@@ -1,0 +1,5 @@
+# Development
+# This will deny all VHOST CNAME domain parking - activate this as default and
+# define your own VHOST on other file
+
+# On development we do nothing - do not block rogue SNI pointing to our host

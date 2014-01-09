@@ -1,0 +1,1 @@
+# Default Attributes For Appsindo Cookbook

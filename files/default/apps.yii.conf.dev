@@ -1,0 +1,16 @@
+# Development
+# Yii Specific Settings
+
+# deny yii internal files
+location ~ /(protected|framework|nbproject) {
+        deny all;
+        access_log off;
+        log_not_found off;
+}
+
+# deny themes
+location ~ /themes/\w+/views {
+        deny all;
+        access_log off;
+        log_not_found off;
+}

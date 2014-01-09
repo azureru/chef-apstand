@@ -1,4 +1,20 @@
-chef-apstand
-============
+appsindo Cookbook
+=================
 
-Chef Recipe for my common needs
+Appsindo Base Cookbook 
+
+Requirements
+------------
+Ubuntu/Debian Specific Cookbook
+
+Attributes
+----------
+
+#### appsindo::default
+
+
+License and Authors
+-------------------
+
+Authors: 
+- Erwin Saputra <erwin.saputra@at.co.id>

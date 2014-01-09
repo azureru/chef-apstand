@@ -1,0 +1,26 @@
+# General Security
+
+# no logging for /favicon.ico
+location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+}
+
+# disable logging for robots
+location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+}
+
+# we still allow logging for humans.txt :)
+
+# deny attempts to access .dotfiles (hidden)
+location ~ /\. {
+    deny all;
+}
+
+# Prevent clients from accessing to backup/config/source files
+location ~* (?:\.(?:bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist)|~)$ {
+    deny all;
+}
