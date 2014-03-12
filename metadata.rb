@@ -10,6 +10,7 @@ recipe "appsindo", "Default"
 recipe "appsindo::nginx", "Customize Nginx"
 recipe "appsindo::logrotate", "Helper for logrotater"
 
+depends 'ohai'
 depends 'build-essential'
 depends 'xml'
 depends 'apt','~> 2.2'
