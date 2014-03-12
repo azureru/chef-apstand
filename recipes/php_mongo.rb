@@ -1,9 +1,9 @@
 #
 # Cookbook Name:: appsindo
-# Recipe:: php_predis
+# Recipe:: php_mongo
 # Descriptions::
 #
-#    Will install PHP Redis Module from Source
+#    Will install PHP Mongo Module from Source
 #
 # Copyright 2013, PT Appsindo Technology
 # @author Erwin Saputra <erwin.saputra@at.co.id>
@@ -18,7 +18,7 @@ package "make" do
 end
 
 # prepare temporary folder
-directory "/tmp/phpredis" do
+directory "/tmp/phpmongo" do
   owner   "root"
   group   "root"
   mode    "0755"
@@ -26,28 +26,28 @@ directory "/tmp/phpredis" do
 end
 
 # clone the source code of phpredis
-git "/tmp/phpredis" do
-  repository "git://github.com/nicolasff/phpredis.git"
-  revision   node['phpredis']['revision']
+git "/tmp/phpmongo" do
+  repository "https://github.com/mongodb/mongo-php-driver.git"
+  revision   'master'
   action     :sync
-  not_if     "php -m | grep redis"
+  not_if     "php -m | grep mongo"
 end
 
-bash "make & install phpredis" do
-  cwd  "/tmp/phpredis"
+bash "make & install mongo" do
+  cwd  "/tmp/phpmongo"
   code <<-EOF
   phpize
   ./configure
   make && make install
   EOF
-  not_if "php -m | grep redis"
+  not_if "php -m | grep mongo"
 end
 
-template "#{node['php']['ext_conf_dir']}/redis.ini" do
+template "#{node['php']['ext_conf_dir']}/mongo.ini" do
   source "php_extension.ini.erb"
   owner  "root"
   group  "root"
   mode   "0644"
-  variables(:name => "redis", :directives => [])
-  not_if "php -m | grep redis"
+  variables(:name => "mongo", :directives => [])
+  not_if "php -m | grep mongo"
 end

@@ -10,6 +10,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "nginx"
+
 is_dev = "";
 if node["environment"] == "development"
   is_dev = ".dev"

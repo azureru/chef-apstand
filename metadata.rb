@@ -10,8 +10,17 @@ recipe "appsindo", "Default"
 recipe "appsindo::nginx", "Customize Nginx"
 recipe "appsindo::logrotate", "Helper for logrotater"
 
+depends 'build-essential'
+depends 'xml'
 depends 'apt','~> 2.2'
 depends 'php','~> 1.3'
+depends 'nginx'
+depends 'nodejs'
+depends 'mysql'
+depends 'redisio'
+depends 'npm'
+depends 'git'
+depends 'cron'
 
 supports 'debian'
 supports 'ubuntu'
