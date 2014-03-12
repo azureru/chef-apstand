@@ -1,5 +1,6 @@
 # Production
-# This nginx site definition will deny all VHOST CNAME domain parking -
+# This nginx site definition will deny all
+# VHOST CNAME domain parking -
 # activate this as default and define your own VHOST on other file
 
 # return 444 (no response)

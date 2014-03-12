@@ -1,4 +1,4 @@
-# Webapp Definition Resource
+# Webapp Definition Resource For Nginx
 
 # default params
 web_params = {
@@ -28,7 +28,7 @@ web_params = {
   ],
 
   # app_type of web-app. Can be `php-fpm`, or `proxy`
-  :app_type           => 'php-fpm',
+  :app_type       => 'php-fpm',
   :pass           => 'http://localhost:9000/',
 
   # ssl

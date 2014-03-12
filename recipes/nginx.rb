@@ -15,25 +15,13 @@ if node["environment"] == "development"
   is_dev = ".dev"
 end
 
-# remove all sites in `/etc/nginx/sites-available/`
-directory "/etc/nginx/sites-available/" do
-  action :delete
-  recursive true
-end
-
-# remove all sites in `/etc/nginx/sites-enabled/`
-directory "/etc/nginx/sites-enabled/" do
-  action :delete
-  recursive true
-end
-
 # remove /etc/nginx/appsindo.d recursively
 directory "/etc/nginx/appsindo.d" do
   action :delete
   recursive true
 end
 
-# create /etc/nginx/appsindo.d with root:root 755 permission
+# create /etc/nginx/appsindo.d for default includes
 directory "/etc/nginx/appsindo.d" do
   owner "root"
   group "root"
@@ -41,58 +29,33 @@ directory "/etc/nginx/appsindo.d" do
   action :create
 end
 
-# copy basic `.conf` to include later
-cookbook_file "/etc/nginx/appsindo.d/apps.chrome.conf" do
-  source "apps.chrome.conf#{is_dev}"
-  mode 0644
-  owner "root"
-  group "root"
-  action :create_if_missing
+%w{apps.chrome.conf apps.expirity.conf apps.no-transform.conf apps.opt.conf apps.security.conf apps.yii.conf}.each do |file|
+    # copy basic `.conf` to include later
+    cookbook_file "/etc/nginx/appsindo.d/#{file}" do
+      source "#{file}#{is_dev}"
+      mode 0644
+      owner "root"
+      group "root"
+      action :create_if_missing
+    end
 end
 
-# copy basic `.conf` to include later
-cookbook_file "/etc/nginx/appsindo.d/apps.expirity.conf" do
-  source "apps.expirity.conf#{is_dev}"
-  mode 0644
-  owner "root"
-  group "root"
-  action :create_if_missing
+# create `/etc/nginx/errors.d/` for custom errors
+directory "/etc/nginx/errors.d/" do
+  owner  "root"
+  group  "root"
+  mode   0755
+  action :create
 end
 
-# copy basic `.conf` to include later
-cookbook_file "/etc/nginx/appsindo.d/apps.no-transform.conf" do
-  source "apps.no-transform.conf#{is_dev}"
-  mode 0644
-  owner "root"
-  group "root"
-  action :create_if_missing
-end
-
-# copy basic `.conf` to include later
-cookbook_file "/etc/nginx/appsindo.d/apps.opt.conf" do
-  source "apps.opt.conf#{is_dev}"
-  mode 0644
-  owner "root"
-  group "root"
-  action :create_if_missing
-end
-
-# copy basic `.conf` to include later
-cookbook_file "/etc/nginx/appsindo.d/apps.security.conf" do
-  source "apps.security.conf#{is_dev}"
-  mode 0644
-  owner "root"
-  group "root"
-  action :create_if_missing
-end
-
-# copy basic `.conf` to include later
-cookbook_file "/etc/nginx/appsindo.d/apps.yii.conf" do
-  source "apps.yii.conf#{is_dev}"
-  mode 0644
-  owner "root"
-  group "root"
-  action :create_if_missing
+%w{404 403 500 503}.each do |file|
+    cookbook_file "/etc/nginx/errors.d/#{file}.html" do
+      source "nginx-#{file}.html"
+      mode   0644
+      owner  "root"
+      group  "root"
+      action :create_if_missing
+    end
 end
 
 # copy basic `.conf` to include later
@@ -129,50 +92,8 @@ cookbook_file "/etc/nginx/sites-available/00-default" do
   action :create_if_missing
 end
 
-# create `/etc/nginx/errors.d/` for custom errors
-directory "/etc/nginx/errors.d/" do
-  owner  "root"
-  group  "root"
-  mode   0755
-  action :create
-end
-
-cookbook_file "/etc/nginx/errors.d/404.html" do
-  source "nginx-404.html"
-  mode   0644
-  owner  "root"
-  group  "root"
-  action :create_if_missing
-end
-
-cookbook_file "/etc/nginx/errors.d/403.html" do
-  source "nginx-403.html"
-  mode   0644
-  owner  "root"
-  group  "root"
-  action :create_if_missing
-end
-
-cookbook_file "/etc/nginx/errors.d/500.html" do
-  source "nginx-500.html"
-  mode   0644
-  owner  "root"
-  group  "root"
-  action :create_if_missing
-end
-
-cookbook_file "/etc/nginx/errors.d/503.html" do
-  source "nginx-503.html"
-  mode   0644
-  owner  "root"
-  group  "root"
-  action :create_if_missing
-end
-
-#
 # default sample landing
 # (so we know we have proper nginx sites)
-#
 directory "/var/www/default/logs" do
   owner     "root"
   group     "www-data"

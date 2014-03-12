@@ -1,7 +1,7 @@
 #
 # Log Rotate Definition Resource
 #
-# @author Erwin Saputra <erwin.saputra@at.co.id>
+# Copyright 2009, Scott M. Likens (Apache 2.0 License)
 #
 
 # default params
