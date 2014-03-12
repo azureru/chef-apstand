@@ -10,7 +10,7 @@ recipe "appsindo", "Default"
 recipe "appsindo::nginx", "Customize Nginx"
 recipe "appsindo::logrotate", "Helper for logrotater"
 
-depends 'ohai'
+depends 'ohai', '~> 1.0'
 depends 'build-essential'
 depends 'xml'
 depends 'apt','~> 2.2'
@@ -18,7 +18,7 @@ depends 'php','~> 1.3'
 depends 'nginx'
 depends 'nodejs'
 depends 'mysql'
-depends 'redisio'
+depends 'redisio', '~> 1.7.1'
 depends 'npm'
 depends 'git'
 depends 'cron'
