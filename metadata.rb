@@ -20,6 +20,7 @@ depends 'nodejs'
 depends 'mysql'
 depends 'redisio', '~> 1.7.1'
 depends 'npm'
+depends 'ntp'
 depends 'git'
 depends 'cron'
 

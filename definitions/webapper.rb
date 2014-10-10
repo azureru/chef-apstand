@@ -119,7 +119,6 @@ define(:webapper, web_params) do
             action :delete
         end
         file "/etc/nginx/sites-enabled/#{params[:name]}" do
-            force_unlink true
             action :delete
         end
     end
