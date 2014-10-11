@@ -37,7 +37,7 @@ web_params = {
 
   # templating
   :template => 'webapp.erb',
-  :cookbook => 'chef-apstand',
+  :cookbook => 'appsindo',
   :template_mode  => '0655',
   :template_owner => 'root',
   :template_group => 'root'

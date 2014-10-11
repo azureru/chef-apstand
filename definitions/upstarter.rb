@@ -43,7 +43,7 @@ node_params = {
   :respawn_limit   => '5 10',
 
   :template => 'upstart_simple.erb',
-  :cookbook => 'chef-apstand',
+  :cookbook => 'appsindo',
   :template_mode  => '0655',
   :template_owner => 'root',
   :template_group => 'root'

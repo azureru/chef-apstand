@@ -2,8 +2,10 @@
 
 default['phpredis']['revision'] = 'master'
 
+# NTP
 default['ntp']['servers'] = ['0.pool.ntp.org', '1.pool.ntp.org']
 
+# MYSQL
 default['mysql']['service_name'] = 'default'
 default['mysql']['server_root_password'] = 'ilikerandompasswords'
 default['mysql']['server_debian_password'] = 'postinstallscriptsarestupid'
