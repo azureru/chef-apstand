@@ -10,7 +10,6 @@
 
 include_recipe "build-essential"
 include_recipe "nodejs"
-include_recipe "npm"
 
 # Install npm modules
 %w{ grunt-cli bower forever yo }.each do |a_package|
