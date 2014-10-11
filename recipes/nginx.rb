@@ -10,6 +10,13 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# download pagespeed
+git "/tmp/ngx_pagespeed" do
+    repository "git://github.com/pagespeed/ngx_pagespeed.git"
+    reference "master"
+    action :sync
+end
+
 include_recipe "nginx"
 
 is_dev = "";
