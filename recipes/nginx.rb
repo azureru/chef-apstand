@@ -34,7 +34,7 @@ end
 %w{apps.chrome.conf apps.expirity.conf apps.no-transform.conf apps.opt.conf apps.security.conf apps.yii.conf}.each do |file|
     # copy basic `.conf` to include later
     cookbook_file "/etc/nginx/appsindo.d/#{file}" do
-      source  "#{file}#{is_dev}"
+      source  "nginx/#{file}#{is_dev}"
       mode    0644
       owner   "root"
       group   "root"
@@ -52,7 +52,7 @@ end
 
 %w{404 403 500 503}.each do |file|
     cookbook_file "/etc/nginx/errors.d/#{file}.html" do
-      source  "nginx-#{file}.html"
+      source  "nginx/nginx-#{file}.html"
       mode    0644
       owner   "root"
       group   "root"
@@ -62,7 +62,7 @@ end
 
 # Mime
 cookbook_file "/etc/nginx/mime.types" do
-  source "mime.types#{is_dev}"
+  source "nginx/mime.types#{is_dev}"
   mode 0644
   owner "root"
   group "root"
@@ -87,7 +87,7 @@ end
 
 # SNI limit
 cookbook_file "/etc/nginx/sites-available/00-default" do
-  source "00-default#{is_dev}"
+  source "nginx/00-default#{is_dev}"
   mode   0644
   owner  "root"
   group  "root"
@@ -104,7 +104,7 @@ directory "/var/www/default/logs" do
 end
 
 cookbook_file "/var/www/default/index.html" do
-  source "nginx-default-index.html"
+  source "nginx/nginx-default-index.html"
   mode   0655
   owner  "root"
   group  "www-data"
@@ -112,7 +112,7 @@ cookbook_file "/var/www/default/index.html" do
 end
 
 cookbook_file "/var/www/default/info.php" do
-  source "nginx-default-info.php"
+  source "nginx/nginx-default-info.php"
   mode   0655
   owner  "root"
   group  "www-data"
