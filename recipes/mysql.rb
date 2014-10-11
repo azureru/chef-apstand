@@ -8,4 +8,4 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "mysql"
+include_recipe "mysql::server"
