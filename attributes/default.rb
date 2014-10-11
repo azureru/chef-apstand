@@ -16,6 +16,8 @@ default['mysql']['remove_anonymous_users'] = true
 default['mysql']['root_network_acl']       = nil
 
 # PHP
+lib_dir = 'lib'
+
 default['php']['fpm_user']      = 'www-data'
 default['php']['fpm_group']     = 'www-data'
 default['php']['install_method'] = 'source'
