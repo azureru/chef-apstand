@@ -17,10 +17,46 @@ git "/tmp/ngx_pagespeed" do
     action :sync
 end
 
+bash "make & install pagespeed SOL for nginx" do
+  cwd  "/tmp/ngx_pagespeed"
+  code <<-EOF
+  wget https://dl.google.com/dl/page-speed/psol/1.9.32.1.tar.gz
+  tar -xzvf 1.9.32.1.tar.gz
+  EOF
+end
+
+directory "/var/tmp/nginx/" do
+  owner  "root"
+  group  "root"
+  mode   0755
+  action :create
+end
+
+directory "/var/tmp/nginx/client/" do
+  owner  "root"
+  group  "root"
+  mode   0755
+  action :create
+end
+
+directory "/var/tmp/nginx/proxy/" do
+  owner  "root"
+  group  "root"
+  mode   0755
+  action :create
+end
+
+directory "/var/tmp/nginx/fcgi/" do
+  owner  "root"
+  group  "root"
+  mode   0755
+  action :create
+end
+
 include_recipe "nginx"
 
 is_dev = "";
-if node["environment"] == "development"
+if node.default["environment"] == "development"
   is_dev = ".dev"
 end
 

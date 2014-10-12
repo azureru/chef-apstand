@@ -18,9 +18,10 @@ default['mysql']['root_network_acl']       = nil
 # PHP
 lib_dir = 'lib'
 
-default['php']['fpm_user']      = 'www-data'
-default['php']['fpm_group']     = 'www-data'
-default['php']['install_method'] = 'source'
+default['php']['install_method'] = 'package'
+default['php']['packages']       = %w{ php5-cgi php5-dev php5-fpm php5-cli php-pear }
+default['php']['fpm_user']       = 'www-data'
+default['php']['fpm_group']      = 'www-data'
 default['php']['url']            = 'http://us1.php.net/get'
 default['php']['version']        = '5.5.9'
 default['php']['checksum']       = '378de162efdaeeb725ed38d7fe956c9f0b9084ff'
@@ -52,7 +53,6 @@ default['php']['configure_options'] = %W{--prefix=#{php['prefix_dir']}
                                          --enable-sockets
                                          --enable-soap
                                          --with-xmlrpc
-                                         --with-libevent-dir
                                          --with-mcrypt
                                          --enable-mbstring
                                          --with-t1lib
@@ -64,11 +64,12 @@ default['php']['configure_options'] = %W{--prefix=#{php['prefix_dir']}
                                          --with-pdo-sqlite}
 
 # Nginx
-default['nginx']['source']['version']   = '1.6.2'
-default['nginx']['source']['prefix']    = "/etc/nginx"
-default['nginx']['dir']                 = '/etc/nginx'
+default['nginx']['install_method']    = "source"
+default['nginx']['source']['version'] = '1.6.2'
+default['nginx']['source']['prefix']  = "/etc/nginx"
+default['nginx']['dir']               = '/etc/nginx'
 default['nginx']['source']['conf_path'] = "#{node['nginx']['dir']}/nginx.conf"
-default['nginx']['source']['sbin_path'] = "#{node['nginx']['source']['prefix']}/sbin/nginx"
+default['nginx']['source']['sbin_path'] = "/usr/sbin/nginx"
 default['nginx']['source']['default_configure_flags'] = %W(
   --prefix=#{node['nginx']['source']['prefix']}
   --conf-path=#{node['nginx']['dir']}/nginx.conf
@@ -77,23 +78,29 @@ default['nginx']['source']['default_configure_flags'] = %W(
   --lock-path=/var/run/nginx.lock
   --error-log-path=/var/log/nginx/error.log
   --http-log-path=/var/log/nginx/access.log
-  --http-client-body-temp-path=/var/lib/nginx/body
-  --http-proxy-temp-path=/var/lib/nginx/proxy
-  --http-fastcgi-temp-path=/var/lib/nginx/fastcgi
+  --http-client-body-temp-path=/var/tmp/nginx/client/
+  --http-proxy-temp-path=/var/tmp/nginx/proxy/
+  --http-fastcgi-temp-path=/var/tmp/nginx/fcgi/
   --user=www-data
   --group=www-data
-  --without-http_autoindex_module
-  --without-http_memcached_module
+  --with-file-aio
+  --with-pcre
+  --with-ipv6
   --with-http_ssl_module
   --with-http_gzip_static_module
   --with-http_spdy_module
-  --with-pcre
-  --with-ipv6
+  --with-http_realip_module
   --add-module=/tmp/ngx_pagespeed
+  --without-http_scgi_module
+  --without-http_uwsgi_module
+  --without-http_browser_module
+  --without-http_autoindex_module
+  --without-http_memcached_module
+  --without-http_empty_gif_module
   --without-http_auth_basic_module
   --without-http_geo_module
   --without-http_ssi_module
-  --without-http_uwsgi_module
+  --without-http_userid_module
   --without-mail_pop3_module
   --without-mail_imap_module
   --without-mail_smtp_module

@@ -10,11 +10,9 @@
 #
 #
 
-# install standard issued PHP
-include_recipe "php"
-
-php_pear "apc" do
-  action :install
-  directives(:shm_size => 128, :enable_cli => 1)
+if node.default['php']['install_method'] == 'package' then
+    include_recipe "appsindo::php_package"
+else
+    include_recipe "appsindo::php_source"
 end
 

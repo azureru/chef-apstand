@@ -14,6 +14,6 @@ include_recipe 'apt::default'
 include_recipe 'build-essential'
 include_recipe 'git'
 
-%w{curl libsqlite3-dev zlib1g-dev libpcre3 libpcre3-dev unzip libxml2-utils lynx links}.each do |a_package|
+%w{curl re2c libsqlite3-dev zlib1g-dev libpcre3 libpcre3-dev unzip libxml2-utils lynx links}.each do |a_package|
   package a_package
 end
