@@ -8,7 +8,6 @@ version          '1.1.0'
 
 recipe "appsindo", "Default"
 recipe "appsindo::nginx", "Customize Nginx"
-recipe "appsindo::logrotate", "Helper for logrotater"
 
 depends 'ohai'
 depends 'build-essential'
