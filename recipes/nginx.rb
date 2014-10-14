@@ -95,7 +95,7 @@ end
 
 %w{404 403 500 503}.each do |file|
     cookbook_file "/etc/nginx/errors.d/#{file}.html" do
-      source  "nginx/nginx-#{file}.html"
+      source  "nginx/errors.d/nginx-#{file}.html"
       mode    0644
       owner   "root"
       group   "root"
@@ -164,6 +164,7 @@ end
 
 appsindo_ngapp 'localhost' do
    root_path   '/var/www/default'
+   server_name 'localhost'
    force_https false
    https       false
    app_type    'php-fpm'
