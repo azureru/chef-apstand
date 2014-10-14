@@ -19,7 +19,7 @@ default['mysql']['root_network_acl']       = nil
 lib_dir = 'lib'
 
 default['php']['install_method'] = 'package'
-default['php']['packages']       = %w{ php5-fpm php5-dev php5-cli php-pear }
+default['php']['packages']       = %w{ php5-fpm php5-dev php5-cli php-pear php5-curl php5-gd php5-mcrypt php5-pdo php5-mysql php5-intl php5-tidy}
 default['php']['fpm_user']       = 'www-data'
 default['php']['fpm_group']      = 'www-data'
 default['php']['url']            = 'http://us1.php.net/get'
