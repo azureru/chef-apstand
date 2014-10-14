@@ -77,7 +77,7 @@ end
 %w{apps.chrome.conf apps.expirity.conf apps.no-transform.conf apps.opt.conf apps.security.conf apps.yii.conf}.each do |file|
     # copy basic `.conf` to include later
     cookbook_file "/etc/nginx/appsindo.d/#{file}" do
-      source  "nginx/#{file}#{is_dev}"
+      source  "nginx/appsindo.d/#{file}#{is_dev}"
       mode    0644
       owner   "root"
       group   "root"
@@ -162,11 +162,10 @@ cookbook_file "/var/www/default/info.php" do
   action :create_if_missing
 end
 
-webapper 'localhost' do
-   enable      true
+appsindo_ngapp 'localhost' do
    root_path   '/var/www/default'
    force_https false
-   app_type    'php-fpm'
-   pass        '127.0.0.1:9000'
    https       false
+   app_type    'php-fpm'
+   pass        'unix:/var/run/php5-fpm.sock'
 end
