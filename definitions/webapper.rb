@@ -29,7 +29,7 @@ web_params = {
 
   # app_type of web-app. Can be `php-fpm`, or `proxy`
   :app_type       => 'php-fpm',
-  :pass           => 'unix:/var/run/php5-fpm.sock;',
+  :pass           => 'unix:/var/run/php5-fpm.sock',
 
   # ssl
   :certificate_path      => nil,
