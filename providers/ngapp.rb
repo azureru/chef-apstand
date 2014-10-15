@@ -24,7 +24,7 @@ action :create do
   t = template "/etc/nginx/sites-available/#{new_resource.name}" do
     cookbook new_resource.cookbook
     source new_resource.template
-    mode "760"
+    mode "764"
     variables(
        :name     => new_resource.name,
        :cookbook => new_resource.cookbook,
