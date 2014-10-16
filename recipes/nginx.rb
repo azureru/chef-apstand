@@ -227,7 +227,7 @@ else
             pass         app[:pass]
             certificate_path     app[:certificate_path]
             certificate_key_path app[:certificate_key_path]
-            template     app[:template].blank? ? "ngapp.erb" : app[:template]
+            template     app.has_key?("template") ? "ngapp.erb" : app[:template]
         end
 
         # we need `host` alias for inside of the machine

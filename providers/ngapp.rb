@@ -25,6 +25,9 @@ action :disable do
 end
 
 action :create do
+  # trailing / to root_path
+  root_path = new_resource.root_path << '/' unless new_resource.root_path.end_with?('/')
+
   t = template "/etc/nginx/sites-available/#{new_resource.name}" do
     cookbook new_resource.cookbook
     source new_resource.template
@@ -34,7 +37,7 @@ action :create do
        :cookbook => new_resource.cookbook,
        :https    => new_resource.https,
        :force_https => new_resource.force_https,
-       :root_path   => new_resource.root_path,
+       :root_path   => root_path,
        :server_name => new_resource.server_name,
        :includes => new_resource.includes,
        :app_type => new_resource.app_type,
