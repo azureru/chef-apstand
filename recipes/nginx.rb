@@ -132,9 +132,18 @@ end
 # Mime
 cookbook_file "/etc/nginx/mime.types" do
   source "nginx/mime.types#{is_dev}"
-  mode 0644
-  owner "root"
-  group "root"
+  mode   0644
+  owner  "root"
+  group  "root"
+  action :create
+end
+
+# Optimized Nginx Conf
+cookbook_file "/etc/nginx/nginx.conf" do
+  source "nginx/nginx.conf#{is_dev}"
+  mode   0644
+  owner  "root"
+  group  "root"
   action :create
 end
 
