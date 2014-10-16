@@ -11,7 +11,6 @@
 # @author Erwin Saputra <erwin.saputra@at.co.id>
 #
 #
-# All rights reserved - Do Not Redistribute
 #
 
 # download pagespeed

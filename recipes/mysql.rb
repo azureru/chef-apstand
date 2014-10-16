@@ -8,7 +8,6 @@
 # @author Erwin Saputra <erwin.saputra@at.co.id>
 #
 #
-# All rights reserved - Do Not Redistribute
 #
 
 # check for default and get angry at people for stick with the default :)

@@ -6,7 +6,6 @@
 #
 # @author Erwin Saputra <erwin.saputra@at.co.id>
 #
-# All rights reserved - Do Not Redistribute
 #
 
 # iterate all entry in `upstart` and create upstart entry
