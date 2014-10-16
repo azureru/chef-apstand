@@ -36,18 +36,18 @@ end
 bash "make & install phpredis" do
   cwd  "/tmp/phpredis"
   code <<-EOF
-  phpize
-  ./configure
-  make && make install
+      phpize
+      ./configure
+      make && make install
   EOF
   not_if "php -m | grep redis"
 end
 
 template "#{node['php']['ext_conf_dir']}/redis.ini" do
-  source "php_extension.ini.erb"
-  owner  "root"
-  group  "root"
-  mode   "0644"
+  source  "php_extension.ini.erb"
+  owner   "root"
+  group   "root"
+  mode    "0644"
   variables(:name => "redis", :directives => [])
-  not_if "php -m | grep redis"
+  not_if  "php -m | grep redis"
 end

@@ -10,3 +10,14 @@
 #
 
 # iterate all entry in `upstart` and create upstart entry
+
+# for every upstart definition
+upstarts = node["upstart"]
+if upstarts.empty? then
+    # nothing to do here
+else
+    # for every upstart
+    upstarts.each do |upstarter|
+
+    end
+end

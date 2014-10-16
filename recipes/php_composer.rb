@@ -10,10 +10,10 @@
 #
 
 bash "install Composer Globally" do
-  user "root"
+  user  "root"
   group "root"
   code <<-EOF
-  curl -sS https://getcomposer.org/installer | php
-  mv composer.phar /usr/local/bin/composer
+      curl -sS https://getcomposer.org/installer | php
+      mv composer.phar /usr/local/bin/composer
   EOF
 end

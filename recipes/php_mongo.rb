@@ -14,7 +14,7 @@ include_recipe "git"
 
 # build dependencies
 package "make" do
-  action :install
+  action   :install
 end
 
 # prepare temporary folder
@@ -27,27 +27,27 @@ end
 
 # clone the source code of phpredis
 git "/tmp/phpmongo" do
-  repository "https://github.com/mongodb/mongo-php-driver.git"
-  revision   'master'
-  action     :sync
-  not_if     "php -m | grep mongo"
+  repository  "https://github.com/mongodb/mongo-php-driver.git"
+  revision    'master'
+  action      :sync
+  not_if      "php -m | grep mongo"
 end
 
 bash "make & install mongo" do
-  cwd  "/tmp/phpmongo"
+  cwd   "/tmp/phpmongo"
   code <<-EOF
-  phpize
-  ./configure
-  make && make install
+      phpize
+      ./configure
+      make && make install
   EOF
   not_if "php -m | grep mongo"
 end
 
 template "#{node['php']['ext_conf_dir']}/mongo.ini" do
-  source "php_extension.ini.erb"
-  owner  "root"
-  group  "root"
-  mode   "0644"
+  source   "php_extension.ini.erb"
+  owner    "root"
+  group    "root"
+  mode     "0644"
   variables(:name => "mongo", :directives => [])
-  not_if "php -m | grep mongo"
+  not_if   "php -m | grep mongo"
 end

@@ -11,13 +11,13 @@
 
 actions :create, :delete, :disable
 
-attribute :name, :kind_of => String, :name_attribute => true
+attribute :name,     :kind_of => String, :name_attribute => true
 attribute :cookbook, :kind_of => String, :default => "appsindo"
 
-attribute :https, :kind_of => [TrueClass, FalseClass], :default => false
+attribute :https,       :kind_of => [TrueClass, FalseClass], :default => false
 attribute :force_https, :kind_of => [TrueClass, FalseClass], :default => false
 
-attribute :root_path, :kind_of => String, :default => "/var/www"
+attribute :root_path,   :kind_of => String, :default => "/var/www"
 attribute :server_name, :kind_of => String, :required => true
 
 # additional includes
@@ -46,10 +46,10 @@ attribute :includes, :kind_of => Array, :default => [
 
 # app_type of web-app. Can be `php-fpm`, or `proxy`
 attribute :app_type, :kind_of => String, :default => "php-fpm"
-attribute :pass, :kind_of => String, :default => "unix:/var/run/php5-fpm.sock"
+attribute :pass,     :kind_of => String, :default => "unix:/var/run/php5-fpm.sock"
 
 # ssl
-attribute :certificate_path, :kind_of => [String, NilClass]
+attribute :certificate_path,     :kind_of => [String, NilClass]
 attribute :certificate_key_path, :kind_of => [String, NilClass]
 
 # templating

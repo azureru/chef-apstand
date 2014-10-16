@@ -13,3 +13,13 @@
 include_recipe 'apt::default'
 
 package 'logrotate'
+
+# for every logrotate
+logrotates = node["logrotate"]
+if logrotates.empty? then
+    # nothing to do here
+else
+    # for every logrotate
+    logrotates.each do |logrotater|
+    end
+end

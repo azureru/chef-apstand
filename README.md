@@ -72,7 +72,6 @@ Ubuntu/Debian Specific Cookbook
 
 License and Authors
 -------------------
-
 Authors & Contributors:
 - Erwin Saputra <erwin.saputra@at.co.id>
 - Dedi Suhanda <dedi.suhanda@at.co.id>
