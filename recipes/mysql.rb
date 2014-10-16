@@ -2,12 +2,9 @@
 # Cookbook Name:: appsindo
 # Recipe:: mysql
 #
-#
-# Copyright 2013, PT Appsindo Technology as BSD-style found in the LICENSE file
+# Copyright 2014, PT Appsindo Technology as BSD-style found in the LICENSE file
 #
 # @author Erwin Saputra <erwin.saputra@at.co.id>
-#
-#
 #
 
 # check for default and get angry at people for stick with the default :)

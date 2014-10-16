@@ -5,11 +5,9 @@
 # Basically just install logrotate on the local machine
 #
 #
-# Copyright 2013, PT Appsindo Technology as BSD-style found in the LICENSE file
+# Copyright 2014, PT Appsindo Technology as BSD-style found in the LICENSE file
 #
 # @author Erwin Saputra <erwin.saputra@at.co.id>
-#
-#
 #
 
 include_recipe 'apt::default'

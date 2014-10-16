@@ -2,15 +2,12 @@
 # Cookbook Name:: appsindo
 # Recipe:: nginx
 # Author:: Erwin Saputra <erwin.saputra@at.co.id>
-#
+# Description::
 #   Install nginx
 #
-#
-# Copyright 2013, PT Appsindo Technology as BSD-style found in the LICENSE file
+# Copyright 2014, PT Appsindo Technology as BSD-style found in the LICENSE file
 #
 # @author Erwin Saputra <erwin.saputra@at.co.id>
-#
-#
 #
 
 # download pagespeed
@@ -87,7 +84,7 @@ directory "/etc/nginx/appsindo.d" do
 end
 
 %w{
-   apps.cachebust
+   apps.cachebust.conf
    apps.chrome.conf
    apps.cors-insecure.conf
    apps.expirity.conf
