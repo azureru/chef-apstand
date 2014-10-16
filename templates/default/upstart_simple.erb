@@ -3,18 +3,18 @@
 # Upstart Script For Simple Nodejs based project for
 # (one app that is a non forking one)
 
-# instance    "<%= @name %>"
+# instance  "<%= @name %>"
 description "<%= @description %>"
-author "<%= @author %>"
-version "<%= @version %>"
+author      "<%= @author %>"
+version     "<%= @version %>"
 
-env USER=<%= @user %>
-env GROUP=<%= @group %>
-env UMASK=<%= @umask %>
-env LOG=<%= @log_path %>
-env PID=<%= @pid_path %>
-env APP_PATH=<%= @app_path %>
-env BASE_PATH=<%= @base_path %>
+env USER  = <%= @user %>
+env GROUP = <%= @group %>
+env UMASK = <%= @umask %>
+env LOG   = <%= @log_path %>
+env PID   = <%= @pid_path %>
+env APP_PATH  = <%= @app_path %>
+env BASE_PATH = <%= @base_path %>
 
 # When to start and stop the service
 <%- if @start_event %>

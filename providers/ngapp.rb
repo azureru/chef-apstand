@@ -2,6 +2,10 @@
 # Cookbook Name:: appsindo
 # Provider:: ngapp
 #
+# Copyright 2013, PT Appsindo Technology as BSD-style found in the LICENSE file
+#
+# @author Erwin Saputra <erwin.saputra@at.co.id>
+#
 
 action :delete do
   f1 = file "/etc/nginx/sites-available/#{new_resource.name}" do

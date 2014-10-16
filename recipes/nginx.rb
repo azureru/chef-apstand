@@ -5,7 +5,11 @@
 #
 #   Install nginx
 #
-# Copyright 2013, Appsindo Technology
+#
+# Copyright 2013, PT Appsindo Technology as BSD-style found in the LICENSE file
+#
+# @author Erwin Saputra <erwin.saputra@at.co.id>
+#
 #
 # All rights reserved - Do Not Redistribute
 #
@@ -17,6 +21,7 @@ git "/tmp/ngx_pagespeed" do
     action :sync
 end
 
+# download psol
 bash "make & install pagespeed SOL for nginx" do
   cwd  "/tmp/ngx_pagespeed"
   code <<-EOF
@@ -25,6 +30,7 @@ bash "make & install pagespeed SOL for nginx" do
   EOF
 end
 
+# prepare tmp for nginx
 directory "/var/tmp/nginx/" do
   owner  "root"
   group  "root"
@@ -36,6 +42,13 @@ directory "/var/tmp/nginx/client/" do
   owner  "root"
   group  "root"
   mode   0755
+  action :create
+end
+
+directory "/var/tmp/pagespeed/" do
+  owner  "root"
+  group  "root"
+  mode   0775
   action :create
 end
 
@@ -74,7 +87,21 @@ directory "/etc/nginx/appsindo.d" do
   action :create
 end
 
-%w{apps.chrome.conf apps.expirity.conf apps.no-transform.conf apps.opt.conf apps.security.conf apps.yii.conf}.each do |file|
+%w{
+   apps.cachebust
+   apps.chrome.conf
+   apps.cors-insecure.conf
+   apps.expirity.conf
+   apps.no-transform.conf
+   apps.opt.conf
+   apps.pagespeed.conf
+   apps.security.conf
+   apps.spdy.conf
+   apps.ssl.conf
+   apps.ssl_stapling.conf
+   apps.yii.conf
+   apps.yii2.conf
+}.each do |file|
     # copy basic `.conf` to include later
     cookbook_file "/etc/nginx/appsindo.d/#{file}" do
       source  "nginx/appsindo.d/#{file}#{is_dev}"
@@ -128,7 +155,7 @@ directory "/etc/nginx/sites-enabled/" do
   action :create
 end
 
-# SNI limit
+# SNI limiter
 cookbook_file "/etc/nginx/sites-available/00-default" do
   source "nginx/00-default#{is_dev}"
   mode   0644

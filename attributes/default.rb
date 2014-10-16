@@ -4,10 +4,20 @@ default['phpredis']['revision'] = 'master'
 # NTP
 default['ntp']['servers'] = ['0.pool.ntp.org', '1.pool.ntp.org']
 
+# Redis
+default['redisio']['servers'] = [
+  {
+    'name' => '10000',
+    'port' => '10000',
+    'unixsocket'     => '/tmp/redis.sock',
+    'unixsocketperm' => '755'
+  }
+]
+
 # MYSQL
 default['mysql']['service_name']           = 'default'
-default['mysql']['server_root_password']   = 'ilikerandompasswords'
-default['mysql']['server_debian_password'] = 'postinstallscriptsarestupid'
+default['mysql']['server_root_password']   = 'defaultwillthrowexception'
+default['mysql']['server_debian_password'] = 'defaultwillthrowexception'
 default['mysql']['data_dir']               = '/var/lib/mysql'
 default['mysql']['port']                   = '3306'
 

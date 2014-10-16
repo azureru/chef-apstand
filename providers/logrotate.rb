@@ -2,6 +2,10 @@
 # Cookbook Name:: appsindo
 # Provider:: logrotate
 #
+# Copyright 2013, PT Appsindo Technology as BSD-style found in the LICENSE file
+#
+# @author Erwin Saputra <erwin.saputra@at.co.id>
+#
 
 action :delete do
   f1 = file "/etc/logrotate.d/#{new_resource.name}" do

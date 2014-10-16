@@ -1,0 +1,9 @@
+# Production
+# Yii Specific Settings
+
+# deny yii2 internal files
+location ~ /(runtime|vendor) {
+        deny all;
+        access_log off;
+        log_not_found off;
+}

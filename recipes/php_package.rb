@@ -5,8 +5,11 @@
 #
 #    Will install PHP and some standard modules
 #
-# Copyright 2013, PT Appsindo Technology
+#
+# Copyright 2013, PT Appsindo Technology as BSD-style found in the LICENSE file
+#
 # @author Erwin Saputra <erwin.saputra@at.co.id>
+#
 #
 #
 
