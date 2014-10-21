@@ -11,13 +11,49 @@
 
 actions :create, :delete
 
+attribute  :name,      :kind_of => String, :name_attribute => true
+attribute  :template , :kind_of => String, :default => "logrotate.erb"
+attribute  :cookbook , :kind_of => String, :default => "appsindo"
+
+# logrotate wildcard / path
+attribute  :path,      :kind_of => String, :required => true
+
+# possible values: daily, weekly, monthly, yearly
 attribute  :frequency,     :kind_of => String, :default => "weekly"
-attribute  :template ,     :kind_of => String, :default => "logrotate.erb"
-attribute  :cookbook ,     :kind_of => String, :default => "appsindo"
-attribute  :postrotate,    :kind_of => [String, NilClass], :default => nil
-attribute  :prerotate ,    :kind_of => [String, NilClass], :default => nil
-attribute  :firstaction,   :kind_of => [String, NilClass], :default => nil
+
+# create
+attribute  :create,     :kind_of => [String, NilClass], :default => nil
+
+# size, minsize and maxsize
+attribute :size,     :kind_of => [Integer, String, NilClass], :default => nil
+attribute :minsize,  :kind_of => [Integer, String, NilClass], :default => nil
+attribute :maxsize,  :kind_of => [Integer, String, NilClass], :default => nil
+
+attribute  :olddir,     :kind_of => [String, NilClass], :default => nil
+
+# su
+attribute :su, :kind_of => [String, NilClass], :default => nil
+
+# rotate
+attribute :rotate,     :kind_of => [Integer, NilClass], :default => nil
+
+# script after log rotated
+attribute  :postrotate,    :kind_of => Array, :default => nil
+
+# script before log rotated
+attribute  :prerotate ,    :kind_of => Array, :default => nil
+
+# executed once
+attribute  :firstaction,   :kind_of => Array, :default => nil
+
+
+# other custom options
+attribute  :options,   :kind_of => Array, :default => nil
+
+
+# executed once
 attribute  :lastaction ,   :kind_of => [String, NilClass], :default => nil
+
 attribute  :sharedscripts, :kind_of => [TrueClass, FalseClass], :default => false
 
 def initialize(*args)
