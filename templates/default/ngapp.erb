@@ -20,13 +20,21 @@ server {
     <% end %>
     <% end %>
 
-    charset utf-8;
-
-    access_log off;
-    error_log <%= @root_path %>logs/<%= @name %>-error.log;
-
     server_name <%= @server_name %>;
     root <%= @root_path %>;
+    charset utf-8;
+
+    # logging
+    <% if @access_log_path %>
+    access_log <%= @access_log_path %>
+    <% else %>
+    access_log off;
+    <% end %>
+    <% if @error_log_path %>
+    error_log <%= @error_log_path %>
+    <% else %>
+    error_log off;
+    <% end %>
 
     # include apps standarized files
     <% @includes.each do |include| -%>

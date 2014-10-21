@@ -31,8 +31,8 @@ action :create do
     end
 
     # execution mode depends on the `:exec_method` value
-    # nodejs based use `start-stop-daemon`
-    # Binary use `exec`
+    # PHP or nodejs based use `start-stop-daemon`
+    # Daemon Binary use `exec`
     # And there's `script` for those who brave :P
     execution = ""
     case new_resource.exec_method

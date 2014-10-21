@@ -29,7 +29,7 @@ attribute :exec_method, :kind_of => String, :default => "start-stop-daemon"
 attribute :exec_script, :kind_of => [String, NilClass], :default => nil
 
 # executable expect mode `fork` `daemon` `nil`
-attribute :expect, :kind_of => [String, NilClass], :defult => nil
+attribute :expect, :kind_of => [String, NilClass], :default => nil
 
 # the path (for executable with param just put `executablename parameter parameter2`)
 attribute :app_path,  :kind_of => String, :default => "/var/www/service/untitled.js"

@@ -38,6 +38,8 @@ action :create do
        :https    => new_resource.https,
        :force_https => new_resource.force_https,
        :root_path   => root_path,
+       :access_log_path => new_resource.access_log_path,
+       :error_log_path  => new_resource.error_log_path,
        :server_name => new_resource.server_name,
        :includes => new_resource.includes,
        :app_type => new_resource.app_type,
@@ -45,6 +47,9 @@ action :create do
        :certificate_path     => new_resource.certificate_path,
        :certificate_key_path => new_resource.certificate_key_path,
     )
+    action :create
+  end
+  f = link "/etc/nginx/sites-enabled/#{new_resource.name}" do
     action :create
   end
   new_resource.updated_by_last_action(t.updated_by_last_action?)
