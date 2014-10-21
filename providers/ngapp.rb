@@ -50,7 +50,7 @@ action :create do
     action :create
   end
   f = link "/etc/nginx/sites-enabled/#{new_resource.name}" do
-    target_file "/etc/nginx/sites-available/#{new_resource.name}"
+    to     "/etc/nginx/sites-available/#{new_resource.name}"
     action :create
   end
   new_resource.updated_by_last_action(t.updated_by_last_action?)
