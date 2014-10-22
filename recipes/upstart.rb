@@ -42,10 +42,10 @@ else
 
             respawn_limit upstarter[:respawn_limit]
 
-            expect      upstarter[:expect]
-            exec_method upstarter[:exec_method]
+            expect       upstarter[:expect]
+            exec_method  upstarter[:exec_method]
 
-            template     upstarter.has_key?("template") ? "upstart_simple.erb" : upstarter[:template]
+            template     upstarter.has_key?("template") ? upstarter[:template] : "upstart_simple.erb"
         end
     end
 end

@@ -29,7 +29,7 @@ default['mysql']['root_network_acl']       = nil
 lib_dir = 'lib'
 
 default['php']['install_method'] = 'package'
-default['php']['packages']       = %w{ php5-fpm php5-dev php5-cli php-pear php5-curl php5-gd php5-mcrypt php5-pdo php5-mysql php5-intl php5-tidy}
+default['php']['packages']       = %w{ php5-fpm php5-dev php5-cli php-pear php5-curl php5-gd php5-mcrypt php5-mysql php5-intl php5-tidy}
 default['php']['fpm_user']       = 'www-data'
 default['php']['fpm_group']      = 'www-data'
 default['php']['url']            = 'http://us1.php.net/get'
@@ -75,6 +75,7 @@ default['php']['configure_options'] = %W{--prefix=#{php['prefix_dir']}
 
 # Nginx
 default['nginx']['install_method']    = "source"
+default['nginx']['is_pagespeed']      = true
 default['nginx']['source']['version'] = '1.6.2'
 default['nginx']['source']['prefix']  = "/etc/nginx"
 default['nginx']['dir']               = '/etc/nginx'
@@ -100,7 +101,6 @@ default['nginx']['source']['default_configure_flags'] = %W(
   --with-http_gzip_static_module
   --with-http_spdy_module
   --with-http_realip_module
-  --add-module=/tmp/ngx_pagespeed
   --without-http_scgi_module
   --without-http_uwsgi_module
   --without-http_browser_module

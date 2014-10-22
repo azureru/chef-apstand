@@ -10,20 +10,35 @@
 # @author Erwin Saputra <erwin.saputra@at.co.id>
 #
 
-# download pagespeed
-git "/tmp/ngx_pagespeed" do
-    repository  "git://github.com/pagespeed/ngx_pagespeed.git"
-    reference   "master"
-    action      :sync
-end
+is_pagespeed = node["nginx"]["is_pagespeed"]
 
-# download psol
-bash "make & install pagespeed SOL for nginx" do
-  cwd  "/tmp/ngx_pagespeed"
-  code <<-EOF
-      wget https://dl.google.com/dl/page-speed/psol/1.9.32.1.tar.gz
-      tar -xzvf 1.9.32.1.tar.gz
-  EOF
+if is_pagespeed then
+    # download pagespeed
+    git "/tmp/ngx_pagespeed" do
+        repository  "git://github.com/pagespeed/ngx_pagespeed.git"
+        reference   "master"
+        action      :sync
+    end
+
+    # download psol
+    bash "make & install pagespeed SOL for nginx" do
+      cwd  "/tmp/ngx_pagespeed"
+      code <<-EOF
+          wget https://dl.google.com/dl/page-speed/psol/1.9.32.1.tar.gz
+          tar -xzvf 1.9.32.1.tar.gz
+      EOF
+    end
+
+    # tmp for pagespeed
+    directory "/var/tmp/pagespeed/" do
+      owner   "root"
+      group   "root"
+      mode    0775
+      action  :create
+    end
+
+    # pagespeed
+    node.default['nginx']['source']['default_configure_flags'].push("--add-module=/tmp/ngx_pagespeed")
 end
 
 # prepare tmp for nginx
@@ -33,28 +48,18 @@ directory "/var/tmp/nginx/" do
   mode    0755
   action  :create
 end
-
 directory "/var/tmp/nginx/client/" do
   owner   "root"
   group   "root"
   mode    0755
   action  :create
 end
-
-directory "/var/tmp/pagespeed/" do
-  owner   "root"
-  group   "root"
-  mode    0775
-  action  :create
-end
-
 directory "/var/tmp/nginx/proxy/" do
   owner   "root"
   group   "root"
   mode    0755
   action  :create
 end
-
 directory "/var/tmp/nginx/fcgi/" do
   owner   "root"
   group   "root"
@@ -115,8 +120,6 @@ directory "/etc/nginx/errors.d/" do
   mode    0755
   action  :create
 end
-
-#---------------------------- Custom Error
 %w{404 403 500 503}.each do |file|
     cookbook_file "/etc/nginx/errors.d/#{file}.html" do
       source  "nginx/errors.d/nginx-#{file}.html"
@@ -162,6 +165,7 @@ directory "/etc/nginx/sites-enabled/" do
 end
 
 #---------------------------- Webappr
+
 # SNI limiter
 cookbook_file "/etc/nginx/sites-available/00-default" do
   source   "nginx/00-default#{is_dev}"
