@@ -15,8 +15,6 @@ action :delete do
 end
 
 action :create do
-    include_recipe 'appsindo::logrotate'
-
     # Check for params - fill it with defaults
     acceptable_options = %w(missingok compress delaycompress dateext dateyesterday copytruncate notifempty delaycompress ifempty mailfirst nocompress nocopy nocopytruncate nocreate nodelaycompress nomail nomissingok noolddir nosharedscripts notifempty sharedscripts)
     options_tmp = new_resource.options ||= %w(missingok compress delaycompress copytruncate notifempty)
@@ -30,6 +28,7 @@ action :create do
 
     # create logrotate.d entry based on existing parameters
     t = template "/etc/logrotate.d/#{new_resource.name}" do
+      action   :create
       source   new_resource.template
       cookbook new_resource.cookbook
       mode     "764"

@@ -46,6 +46,7 @@ action :create do
 
     # create /etc/init/ entry based on existing parameters
     t = template "/etc/init/#{new_resource.name}.conf" do
+          action :create
           source   new_resource.template
           cookbook new_resource.cookbook
           mode     "764"

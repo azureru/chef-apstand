@@ -31,6 +31,7 @@ action :create do
   t = template "/etc/nginx/sites-available/#{new_resource.name}" do
     cookbook new_resource.cookbook
     source new_resource.template
+    action :create
     mode "764"
     variables(
        :name     => new_resource.name,
@@ -47,7 +48,6 @@ action :create do
        :certificate_path     => new_resource.certificate_path,
        :certificate_key_path => new_resource.certificate_key_path,
     )
-    action :create
   end
   f = link "/etc/nginx/sites-enabled/#{new_resource.name}" do
     to     "/etc/nginx/sites-available/#{new_resource.name}"
