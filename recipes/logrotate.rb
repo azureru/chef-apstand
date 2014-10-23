@@ -16,7 +16,7 @@ package 'logrotate'
 
 # for every logrotate
 logrotates = node["logrotate"]
-if logrotates.empty? then
+if logrotates.nil? or logrotates.empty? then
     # nothing to do here
 else
     # for every logrotate

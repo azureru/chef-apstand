@@ -13,7 +13,7 @@
 
 # for every upstart definition
 upstarts = node["upstart"]
-if upstarts.empty? then
+if upstarts.nil? or upstarts.empty? then
     # nothing to do here
 else
     # for every upstart
