@@ -15,9 +15,9 @@ attribute :name,     :kind_of => String, :name_attribute => true
 attribute :cookbook, :kind_of => String, :default => "appsindo"
 
 # pathes
-attribute :root_path,       :kind_of => String, :default => "/var/www"
 attribute :error_log_path,  :kind_of => [String, NilClass], :default => nil
 attribute :access_log_path, :kind_of => [String, NilClass], :default => nil
+attribute :root_path,       :kind_of => String, :default => "/var/www/default"
 
 # server name
 attribute :server_name,     :kind_of => String, :required => true

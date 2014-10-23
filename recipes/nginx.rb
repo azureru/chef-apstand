@@ -206,13 +206,13 @@ if webapp.empty? then
       action  :create_if_missing
     end
 
-    appsindo_ngapp 'localhost' do
-       root_path    '/var/www/default'
-       server_name  'localhost'
-       force_https  false
-       https        false
-       app_type     'php-fpm'
-       pass         'unix:/var/run/php5-fpm.sock'
+    appsindo_ngapp "localhost" do
+      name         "localhost"
+      https        false
+      force_https  false
+      server_name  "localhost"
+      app_type     "php-fpm"
+      pass         "unix:/var/run/php5-fpm.sock"
     end
 else
     # for every webapp array
