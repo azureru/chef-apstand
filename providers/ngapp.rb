@@ -26,7 +26,7 @@ end
 
 action :create do
   # trailing / to root_path
-  new_resource.root_path = new_resource.root_path << '/' unless new_resource.root_path.end_with?('/')
+  #new_resource.root_path = new_resource.root_path << '/' unless new_resource.root_path.end_with?('/')
 
   if node['nginx']['is_pagespeed'] then
       new_resource.includes.push('/etc/nginx/appsindo.d/apps.pagespeed.conf');

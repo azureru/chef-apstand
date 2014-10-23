@@ -210,6 +210,7 @@ if webapp.empty? then
       name         "localhost"
       https        false
       force_https  false
+      root_path    "/var/www/default/"
       server_name  "localhost"
       app_type     "php-fpm"
       pass         "unix:/var/run/php5-fpm.sock"
