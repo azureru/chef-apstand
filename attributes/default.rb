@@ -7,10 +7,10 @@ default['ntp']['servers'] = ['0.pool.ntp.org', '1.pool.ntp.org']
 # Redis
 default['redisio']['servers'] = [
   {
-    'name' => '-server',
-    'port' => '10000',
-    'unixsocket'     => '/tmp/redis.sock',
-    'unixsocketperm' => '755'
+    'name'           => 'server',
+    'port'           => '10000',
+    'unixsocket'     => nil
+    'unixsocketperm' => nil
   }
 ]
 
