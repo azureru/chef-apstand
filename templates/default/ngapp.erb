@@ -25,15 +25,12 @@ server {
 
     # logging
     <% if @access_log_path %>
-    access_log <%= @access_log_path %>
+    access_log <%= @access_log_path %>;
     <% else %>
     access_log off;
     <% end %>
-
     <% if @error_log_path %>
-    error_log <%= @error_log_path %>
-    <% else %>
-
+    error_log <%= @error_log_path %>;
     <% end %>
 
     # include apps standarized files
