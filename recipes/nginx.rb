@@ -176,7 +176,7 @@ if node['nginx']['init_style'] == 'upstart' then
       action   :create
       mode     "650"
       variables(
-         :nginx_path => node['nginx']['source']['sbin_path']
+         :nginx_path => node['nginx']['source']['sbin_path'],
          :nginx_pid  => node['nginx']['pid']
       )
     end
