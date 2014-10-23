@@ -5,6 +5,7 @@ default['phpredis']['revision'] = 'master'
 default['ntp']['servers'] = ['0.pool.ntp.org', '1.pool.ntp.org']
 
 # Redis
+default['redisio']['job_control'] = 'upstart'
 default['redisio']['servers'] = [
   {
     'name'           => 'server',
