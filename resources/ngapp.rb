@@ -38,7 +38,6 @@ attribute :server_name,     :kind_of => String, :required => true
 #   apps.yii.conf
 #   apps.yii2.conf
 attribute :includes, :kind_of => Array, :default => [
-    '/etc/nginx/appsindo.d/apps.pagespeed.conf',
     '/etc/nginx/appsindo.d/apps.chrome.conf',
     '/etc/nginx/appsindo.d/apps.expirity.conf',
     '/etc/nginx/appsindo.d/apps.no-transform.conf',

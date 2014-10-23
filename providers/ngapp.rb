@@ -28,6 +28,11 @@ action :create do
   # trailing / to root_path
   root_path = new_resource.root_path << '/' unless new_resource.root_path.end_with?('/')
 
+  includes = new_resource.includes
+  if node['nginx']['is_pagespeed'] then
+      includes.push('/etc/nginx/appsindo.d/apps.pagespeed.conf');
+  end
+
   t = template "/etc/nginx/sites-available/#{new_resource.name}" do
     cookbook new_resource.cookbook
     source new_resource.template

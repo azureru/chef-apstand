@@ -140,12 +140,14 @@ cookbook_file "/etc/nginx/mime.types" do
 end
 
 #---------------------------- Nginx Core
-cookbook_file "/etc/nginx/nginx.conf" do
-  source  "nginx/nginx.conf#{is_dev}"
-  mode    0644
-  owner   "root"
-  group   "root"
-  action  :create
+template "/etc/nginx/nginx.conf" do
+  cookbook "appsindo"
+  source   "nginx.erb"
+  action   :create
+  mode     "650"
+  variables(
+     :pagespeed => is_pagespeed
+  )
 end
 
 # create `/etc/nginx/sites-available/`
@@ -224,7 +226,7 @@ else
             name         app[:name]
             https        app[:is_https]
             force_https  app[:is_force_https]
-            root_path    app[:root]
+            root_path    app[:root_path]
             server_name  app[:server_name]
             includes     app[:includes]
             app_type     app[:type]

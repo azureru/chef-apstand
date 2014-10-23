@@ -9,7 +9,7 @@ default['redisio']['servers'] = [
   {
     'name'           => 'server',
     'port'           => '10000',
-    'unixsocket'     => nil
+    'unixsocket'     => nil,
     'unixsocketperm' => nil
   }
 ]
