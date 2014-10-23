@@ -183,8 +183,8 @@ if node['nginx']['init_style'] == 'upstart' then
 end
 
 #---------------------------- Webappr
-
 # SNI limiter
+# This will block any host to use our instance IP
 cookbook_file "/etc/nginx/sites-available/00-default" do
   source   "nginx/00-default#{is_dev}"
   mode     0644
@@ -195,7 +195,7 @@ end
 
 # foreach web-application defined on the `webapp`
 webapp = node["webapp"]
-if webapp.empty? then
+if webapp.nil? or webapp.empty? then
     # the webapp is empty let's define default "Whoaa it's working site"
     # Default Landing
     directory "/var/www/default/logs" do
