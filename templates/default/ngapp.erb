@@ -1,5 +1,4 @@
 # nginx virtual-host setting for <%= @server_name %>
-
 <% if @force_https %>
 server {
     listen 80;
@@ -30,10 +29,11 @@ server {
     <% else %>
     access_log off;
     <% end %>
+
     <% if @error_log_path %>
     error_log <%= @error_log_path %>
     <% else %>
-    error_log off;
+
     <% end %>
 
     # include apps standarized files

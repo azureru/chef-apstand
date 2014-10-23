@@ -222,6 +222,11 @@ else
             action :delete
         end
 
+        log "message" do
+            message "webapp #{app[:root_path]} #{app[:server_name]}"
+            level :info
+        end
+
         appsindo_ngapp app[:name] do
             name         app[:name]
             https        app[:is_https]
@@ -231,6 +236,8 @@ else
             includes     app[:includes]
             app_type     app[:type]
             pass         app[:pass]
+            access_log_path      app[:access_log_path]
+            error_log_path       app[:error_log_path]
             certificate_path     app[:certificate_path]
             certificate_key_path app[:certificate_key_path]
             template     app.has_key?("template") ? "ngapp.erb" : app[:template]
