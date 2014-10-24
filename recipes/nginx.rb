@@ -11,9 +11,11 @@
 #
 
 # adding whoever the user set to the default `www-data` group
-localUser = node['www']['user']
+localUser  = node['www']['user']
+localGroup = node['www']['group']
 bash "add user #{localUser} to www-data" do
   code "usermod -a -G www-data #{localUser}"
+  code "usermod -a -G #{localGroup} www-data"
 end
 
 is_pagespeed = node["nginx"]["is_pagespeed"]
