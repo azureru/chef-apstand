@@ -6,7 +6,10 @@ default["www"]["group"] = 'www-data'
 default['phpredis']['revision'] = 'master'
 
 # NTP
-default['ntp']['servers'] = ['0.pool.ntp.org', '1.pool.ntp.org']
+default['ntp']['servers'] = [
+  '0.pool.ntp.org',
+  '1.pool.ntp.org'
+]
 
 # Redis
 default['redisio']['job_control'] = 'upstart'
@@ -123,8 +126,9 @@ default['nginx']['source']['default_configure_flags'] = %W(
   --without-mail_imap_module
   --without-mail_smtp_module
 )
-
 default['nginx']['configure_flags']    = []
+
+# Nginx from Source
 default['nginx']['source']['version']  = '1.6.2'
 default['nginx']['source']['url']      = "http://nginx.org/download/nginx-#{node['nginx']['source']['version']}.tar.gz"
 default['nginx']['source']['checksum'] = 'f5cfe682a1aeef4602c2ca705402d5049b748f946563f41d8256c18674836067'
