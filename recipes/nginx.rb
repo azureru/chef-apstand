@@ -268,3 +268,9 @@ else
         end
   end
 end
+
+# adding whoever the user set to the default `www-data` group
+localUser = node['www']['user']
+bash "add user to www-data" do
+  code "usermod -a -G www-data #{localUser}"
+end
