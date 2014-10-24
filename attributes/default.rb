@@ -35,8 +35,8 @@ lib_dir = 'lib'
 
 default['php']['install_method'] = 'package'
 default['php']['packages']       = %w{ php5-fpm php5-dev php5-cli php-pear php5-curl php5-gd php5-mcrypt php5-mysql php5-intl php5-tidy}
-default['php']['fpm_user']       = 'www-data'
-default['php']['fpm_group']      = 'www-data'
+default['php']['fpm_user']       = node['www']['user']
+default['php']['fpm_group']      = node['www']['group']
 default['php']['url']            = 'http://us1.php.net/get'
 default['php']['version']        = '5.5.9'
 default['php']['checksum']       = '378de162efdaeeb725ed38d7fe956c9f0b9084ff'
@@ -99,8 +99,8 @@ default['nginx']['source']['default_configure_flags'] = %W(
   --http-client-body-temp-path=/var/tmp/nginx/client/
   --http-proxy-temp-path=/var/tmp/nginx/proxy/
   --http-fastcgi-temp-path=/var/tmp/nginx/fcgi/
-  --user=www-data
-  --group=www-data
+  --user=#{node['nginx']['user']}
+  --group=#{node['nginx']['group']}
   --with-file-aio
   --with-pcre
   --with-ipv6
