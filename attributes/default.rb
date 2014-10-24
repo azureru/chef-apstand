@@ -83,8 +83,6 @@ default['php']['configure_options'] = %W{--prefix=#{php['prefix_dir']}
 default['nginx']['install_method']      = "source"
 default['nginx']['init_style']          = 'upstart'
 default['nginx']['is_pagespeed']        = true
-default['nginx']['user']                = node['www']['user']
-default['nginx']['group']               = node['www']['group']
 default['nginx']['source']['version']   = '1.6.2'
 default['nginx']['source']['prefix']    = "/etc/nginx"
 default['nginx']['dir']                 = '/etc/nginx'
