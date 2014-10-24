@@ -141,7 +141,6 @@ end
 
 #---------------------------- Nginx Core
 template "/etc/nginx/nginx.conf" do
-  cookbook "appsindo"
   source   "nginx.erb"
   action   :create
   mode     "650"
@@ -170,7 +169,6 @@ end
 # we do this since the upstart from chef cookbook is broken
 # it does not expect `fork` and mess up the process
 template "/etc/init/nginx.conf" do
-    cookbook "appsindo"
     source   "nginx.upstart.erb"
     action   :create
     mode     "650"
@@ -236,11 +234,6 @@ else
         # delete the old config (if any)
         file "/etc/nginx/sites-available/#{app[:server_name]}.conf" do
             action :delete
-        end
-
-        log "message" do
-            message "webapp #{app[:root_path]} #{app[:server_name]}"
-            level :info
         end
 
         appsindo_ngapp app[:name] do
