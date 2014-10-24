@@ -80,12 +80,14 @@ default['php']['configure_options'] = %W{--prefix=#{php['prefix_dir']}
                                          --with-pdo-sqlite}
 
 # Nginx
-default['nginx']['install_method']    = "source"
-default['nginx']['init_style']        = 'upstart'
-default['nginx']['is_pagespeed']      = true
-default['nginx']['source']['version'] = '1.6.2'
-default['nginx']['source']['prefix']  = "/etc/nginx"
-default['nginx']['dir']               = '/etc/nginx'
+default['nginx']['install_method']      = "source"
+default['nginx']['init_style']          = 'upstart'
+default['nginx']['is_pagespeed']        = true
+default['nginx']['user']                = node['www']['user']
+default['nginx']['group']               = node['www']['group']
+default['nginx']['source']['version']   = '1.6.2'
+default['nginx']['source']['prefix']    = "/etc/nginx"
+default['nginx']['dir']                 = '/etc/nginx'
 default['nginx']['source']['conf_path'] = "#{node['nginx']['dir']}/nginx.conf"
 default['nginx']['source']['sbin_path'] = "/usr/sbin/nginx"
 default['nginx']['source']['default_configure_flags'] = %W(

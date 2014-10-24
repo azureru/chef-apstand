@@ -1,4 +1,5 @@
 # Development
 # Prevent mobile network providers from modifying your site
+# this will also prevent pagespeed
 
 add_header "Cache-Control" "no-transform";
