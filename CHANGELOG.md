@@ -4,6 +4,7 @@ appsindo CHANGELOG
 1.1.0
 -----
 - Convert logrotate, upstart, nginx to LWRP
+- Fix nginx issues with upstart
 
 1.0
 ---

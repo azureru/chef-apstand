@@ -20,38 +20,7 @@ This is what I do in Vagrant
          "www" => {
             "user"  => user,
             "group" => group
-         },
-         "webapp" => [{
-             "server_name" => "#{local_hostname}",
-             "public_path" => "#{shared_folder}/app/frontend/web/",
-             "log_path"    => "#{shared_folder}/log/",
-             "env"         => env
-         },
-         {
-             "server_name" => "backend.#{local_hostname}",
-             "public_path" => "#{shared_folder}/app/backend/web/",
-             "log_path"    => "#{shared_folder}/log/",
-             "env"         => env
-         },
-         {
-             "server_name" => "business.#{local_hostname}",
-             "public_path" => "#{shared_folder}/app/backend/web/",
-             "log_path"    => "#{shared_folder}/log/",
-             "env"         => env
-         },
-         {
-             "server_name" => "api.#{local_hostname}",
-             "public_path" => "#{shared_folder}/app/api/web/",
-             "log_path"    => "#{shared_folder}/log/",
-             "env"         => env
-         },
-         {
-             "server_name" => "rec.#{local_hostname}",
-             "public_path" => "#{shared_folder}/app/",
-             "log_path"    => "#{shared_folder}/log/",
-             "env"         => env
          }
-         ]
       }
 
       # the basic recipes for PHP development
