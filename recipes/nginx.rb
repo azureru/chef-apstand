@@ -10,6 +10,12 @@
 # @author Erwin Saputra <erwin.saputra@at.co.id>
 #
 
+# adding whoever the user set to the default `www-data` group
+localUser = node['www']['user']
+bash "add user #{localUser} to www-data" do
+  code "usermod -a -G www-data #{localUser}"
+end
+
 is_pagespeed = node["nginx"]["is_pagespeed"]
 
 if is_pagespeed then
@@ -269,8 +275,3 @@ else
   end
 end
 
-# adding whoever the user set to the default `www-data` group
-localUser = node['www']['user']
-bash "add user to www-data" do
-  code "usermod -a -G www-data #{localUser}"
-end
