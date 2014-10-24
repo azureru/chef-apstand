@@ -161,7 +161,7 @@ end
 
 # create `/etc/nginx/sites-enabled/`
 directory "/etc/nginx/sites-enabled/" do
-  owner   "root"
+  owner   "r`oot"
   group   "root"
   mode    0755
   action  :create
