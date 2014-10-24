@@ -170,16 +170,17 @@ end
 #---------------------------- Upstart Fix
 # we do this since the upstart from chef cookbook is broken
 # it does not expect `fork` and mess up the process
-template "/etc/init/nginx.conf" do
-    source   "nginx.upstart.erb"
-    action   :create
-    mode     "650"
-    variables(
-       :nginx_path => node['nginx']['source']['sbin_path'],
-       :nginx_pid  => node['nginx']['pid']
-    )
-    only_if { node['nginx']['init_style'] == 'upstart' }
-end
+# template "/etc/init/nginx.conf" do
+#     source   "nginx.upstart.erb"
+#     action   :create
+#     mode     "764"
+#     variables(
+#        :nginx_path => node['nginx']['source']['sbin_path'],
+#        :nginx_pid  => node['nginx']['pid']
+#     )
+#     only_if { node['nginx']['init_style'] == 'upstart' }
+# end
+
 
 #---------------------------- Webappr
 # SNI limiter
