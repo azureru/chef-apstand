@@ -145,6 +145,8 @@ template "/etc/nginx/nginx.conf" do
   action   :create
   mode     "650"
   variables(
+     :user      => node["www"]["user"],
+     :group     => node["www"]["group"],
      :pagespeed => is_pagespeed
   )
 end

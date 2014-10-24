@@ -1,4 +1,9 @@
 # Default Attributes For Appsindo Cookbook
+
+default["www"]["user"]  = 'www-data'
+default["www"]["group"] = 'www-data'
+
+# PHP redis?
 default['phpredis']['revision'] = 'master'
 
 # NTP
