@@ -19,21 +19,18 @@ bash "add user #{localUser} to www-data" do
 end
 
 is_pagespeed = node["nginx"]["is_pagespeed"]
+nps_version  = "1.9.32.2"
 
 if is_pagespeed then
-    # download pagespeed
-    git "/tmp/ngx_pagespeed" do
-        repository  "git://github.com/pagespeed/ngx_pagespeed.git"
-        reference   "master"
-        action      :sync
-    end
-
-    # download psol
-    bash "make & install pagespeed SOL for nginx" do
+    # download Pagespeed and PSOL and compile
+    bash "make & install pagespeed for nginx" do
       cwd  "/tmp/ngx_pagespeed"
       code <<-EOF
-          wget https://dl.google.com/dl/page-speed/psol/1.9.32.1.tar.gz
-          tar -xzvf 1.9.32.1.tar.gz
+          wget https://github.com/pagespeed/ngx_pagespeed/archive/release-#{nps_version}-beta.zip
+          unzip release-#{nps_version}-beta.zip
+          cd ngx_pagespeed-release-#{nps_version}-beta/
+          wget https://dl.google.com/dl/page-speed/psol/#{nps_version}.tar.gz
+          tar -xzvf #{nps_version}.tar.gz
       EOF
     end
 
@@ -46,7 +43,7 @@ if is_pagespeed then
     end
 
     # pagespeed
-    node.default['nginx']['source']['default_configure_flags'].push("--add-module=/tmp/ngx_pagespeed")
+    node.default['nginx']['source']['default_configure_flags'].push("--add-module=/tmp/ngx_pagespeed-release-#{nps_version}-beta")
 end
 
 # prepare tmp for nginx
