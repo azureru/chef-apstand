@@ -24,7 +24,7 @@ nps_version  = "1.9.32.2"
 if is_pagespeed then
     # download Pagespeed and PSOL and compile
     bash "make & install pagespeed for nginx" do
-      cwd  "/tmp/ngx_pagespeed"
+      cwd  "/tmp/"
       code <<-EOF
           wget https://github.com/pagespeed/ngx_pagespeed/archive/release-#{nps_version}-beta.zip
           unzip release-#{nps_version}-beta.zip
