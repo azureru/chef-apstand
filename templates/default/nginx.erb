@@ -29,7 +29,7 @@ http {
     # pagespeed
     pagespeed off;
     pagespeed FileCachePath /var/ngx_pagespeed;
-    pagespeed FetchHttps enable, allow_self_signed, allow_unknown_certificate_authority;
+    pagespeed FetchHttps enable,allow_self_signed,allow_unknown_certificate_authority;
     pagespeed MapOriginDomain localhost *;
     <% end %>
 
