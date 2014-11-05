@@ -36,8 +36,7 @@ This is what I do in Vagrant
 
 Requirements
 ------------
-Ubuntu/Debian Specific Cookbook 
-(still no platform checking - use with caution :P)
+Ubuntu/Debian Specific Cookbook (still no platform checking - use with caution :P)
 
 License and Authors
 -------------------
