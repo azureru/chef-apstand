@@ -40,7 +40,6 @@ attribute :server_name,     :kind_of => String, :required => true
 attribute :includes, :kind_of => Array, :default => [
     '/etc/nginx/appsindo.d/apps.chrome.conf',
     '/etc/nginx/appsindo.d/apps.expirity.conf',
-    '/etc/nginx/appsindo.d/apps.no-transform.conf',
     '/etc/nginx/appsindo.d/apps.opt.conf',
     '/etc/nginx/appsindo.d/apps.security.conf'
 ]
