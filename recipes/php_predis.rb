@@ -51,3 +51,15 @@ template "#{node['php']['ext_conf_dir']}/redis.ini" do
   variables(:name => "redis", :directives => [])
   not_if  "php -m | grep redis"
 end
+
+link "/etc/php5/cli/conf.d/20-redis.ini" do
+    to "#{node['php']['ext_conf_dir']}/redis.ini"
+end
+
+link "/etc/php5/fpm/conf.d/20-redis.ini" do
+    to "#{node['php']['ext_conf_dir']}/redis.ini"
+end
+
+service "php5-fpm" do
+  action :restart
+end
