@@ -41,6 +41,7 @@ default['php']['packages']       = %w{ php5-fpm php5-dev php5-cli php-pear php5-
 default['php']['fpm_user']       = node['www']['user']
 default['php']['fpm_group']      = node['www']['group']
 default['php']['url']            = 'http://us1.php.net/get'
+default['php']['ext_conf_dir']   = '/etc/php5/mods-available'
 default['php']['version']        = '5.5.9'
 default['php']['checksum']       = '378de162efdaeeb725ed38d7fe956c9f0b9084ff'
 default['php']['prefix_dir']     = '/usr/local'
