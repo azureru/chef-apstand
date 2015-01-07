@@ -19,7 +19,7 @@ end
 pool_name  = "www"
 localUser  = node['www']['user']
 localGroup = node['www']['group']
-t = template "/etc/php5/fpm/#{pool_name}" do
+template "/etc/php5/fpm/pool.d/#{pool_name}.conf" do
   action   :create
   source   "pool-fpm.erb"
   cookbook "appsindo"

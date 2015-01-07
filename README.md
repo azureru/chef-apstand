@@ -34,7 +34,7 @@ This is what I do in Vagrant
       chef.add_recipe("appsindo::mysql")
 ```
 
-As for `chef-solo`, just convert ruby ruby code above into JSON
+As for `chef-solo`, just convert ruby code above into JSON
 
 Requirements
 ------------
