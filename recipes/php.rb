@@ -15,3 +15,21 @@ else
     include_recipe "appsindo::php_source"
 end
 
+# create single pool config for development purpose
+pool_name  = "www"
+localUser  = node['www']['user']
+localGroup = node['www']['group']
+t = template "/etc/php5/fpm/#{pool_name}" do
+  action   :create
+  source   "pool-fpm.erb"
+  cookbook "appsindo"
+  mode     "764"
+  owner    "root"
+  group    "root"
+  backup   false
+  variables(
+     :name  => pool_name,
+     :user  => localUser,
+     :group => localGroup
+  )
+end

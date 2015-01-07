@@ -1,0 +1,47 @@
+;# FPM pool
+[<%= @name %>]
+user  = <%= @user %>
+group = <%= @group %>
+
+;# socket based listener
+listen = /var/run/php5-fpm.sock
+listen.owner = www-data
+listen.group = www-data
+listen.mode = 0660
+
+chdir = /
+
+;# Worker
+pm = dynamic
+pm.max_children  = 5 # 5 is for server with low resources
+pm.start_servers = 2 # min_spare_servers + (max_spare_servers - min_spare_servers) / 2
+pm.min_spare_servers = 1
+pm.max_spare_servers = 3
+
+;# after child handle this `N` request then it will restarted (on case where your PHP has memory LEAK)
+;pm.max_requests = 500
+
+;# Default Value: 65535 (-1 on FreeBSD and OpenBSD)
+;listen.backlog = 65535
+
+;# Now if your web-service (nginx) in other server - define the ip here
+;listen.allowed_clients = 127.0.0.1
+
+;# If yes then will dump error to error.log file, if not go to /dev/null
+;catch_workers_output = yes
+
+;# Any environment variable to pass? anything start with $ will be fetched from current ENV
+;clear_env = yes # clear current ENV (pass manually below)
+;env[HOSTNAME] = $HOSTNAME
+;env[PATH] = /usr/local/bin:/usr/bin:/bin
+;env[TMP] = /tmp
+;env[TMPDIR] = /tmp
+;env[TEMP] = /tmp
+;env[DEBUG] = 1
+
+;# Additional PHP.ini override
+;php_admin_value[sendmail_path] = /usr/sbin/sendmail -t -i -f www@my.domain.com
+;php_flag[display_errors] = off
+;php_admin_value[error_log] = /var/log/fpm-php.www.log
+;php_admin_flag[log_errors] = on
+;php_admin_value[memory_limit] = 32M
