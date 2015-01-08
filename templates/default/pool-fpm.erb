@@ -5,16 +5,18 @@ group = <%= @group %>
 
 ;# socket based listener
 listen = /var/run/php5-fpm.sock
-listen.owner = www-data
-listen.group = www-data
+listen.owner = <%= @user %>
+listen.group = <%= @group %>
 listen.mode = 0660
 
 chdir = /
 
 ;# Worker
+; max_children  = 5 is for server with low resources
+; start_servers = min_spare_servers + (max_spare_servers - min_spare_servers) / 2
 pm = dynamic
-pm.max_children  = 5 # 5 is for server with low resources
-pm.start_servers = 2 # min_spare_servers + (max_spare_servers - min_spare_servers) / 2
+pm.max_children  = 5
+pm.start_servers = 2
 pm.min_spare_servers = 1
 pm.max_spare_servers = 3
 
