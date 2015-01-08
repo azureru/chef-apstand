@@ -10,6 +10,31 @@
 # @author Erwin Saputra <erwin.saputra@at.co.id>
 #
 
+# WEBAPPS
+webapp = node["webapp"]
+
+# CLEANING (so our config is immutable)
+#---------------------------- Basic Includes
+directory "/etc/nginx/appsindo.d" do
+  action     :delete
+  recursive  true
+end
+
+if webapp.nil? or webapp.empty? then
+    # delete the old config (if any)
+    file "/etc/nginx/sites-enabled/00-default.conf" do
+        action :delete
+    end
+else
+    webapp.each do |app|
+        # delete the old config (if any)
+        file "/etc/nginx/sites-enabled/#{app[:name]}.conf" do
+            action :delete
+        end
+    end
+end
+
+
 # adding whoever the user set to the default `www-data` group
 localUser  = node['www']['user']
 localGroup = node['www']['group']
@@ -77,12 +102,6 @@ include_recipe "nginx"
 is_dev = "";
 if node.default["environment"] == "development"
   is_dev = ".dev"
-end
-
-#---------------------------- Basic Includes
-directory "/etc/nginx/appsindo.d" do
-  action     :delete
-  recursive  true
 end
 
 # create /etc/nginx/appsindo.d for default includes
@@ -198,8 +217,7 @@ cookbook_file "/etc/nginx/sites-available/00-default" do
   action   :create_if_missing
 end
 
-# foreach web-application defined on the `webapp`
-webapp = node["webapp"]
+# Create WEBAPPS
 if webapp.nil? or webapp.empty? then
     # the webapp is empty let's define default "Whoaa it's working site"
     # Default Landing
@@ -240,7 +258,7 @@ else
     # for every webapp array
     webapp.each do |app|
         # delete the old config (if any)
-        file "/etc/nginx/sites-available/#{app[:server_name]}.conf" do
+        file "/etc/nginx/sites-available/#{app[:name]}.conf" do
             action :delete
         end
 

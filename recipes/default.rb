@@ -13,6 +13,7 @@
 # @author Erwin Saputra <erwin.saputra@at.co.id>
 #
 
+# essentials
 include_recipe 'apt::default'
 include_recipe 'build-essential'
 include_recipe 'git'

@@ -91,8 +91,7 @@ default['nginx']['source']['version']                 = '1.6.2'
 default['nginx']['default_site_enabled']              = false
 default['nginx']['source']['prefix']                  = "/etc/nginx"
 default['nginx']['dir']                               = '/etc/nginx'
-# we move the default nginx.conf of the recipe to nginx.conf.recipe since we are going to use our own nginx.conf (see appsindo::nginx)
-default['nginx']['source']['conf_path']               = "#{node['nginx']['dir']}/nginx.conf.recipe"
+default['nginx']['source']['conf_path']               = "#{node['nginx']['dir']}/nginx.conf"
 default['nginx']['source']['sbin_path']               = "/usr/sbin/nginx"
 default['nginx']['source']['default_configure_flags'] = %W(
   --prefix=#{node['nginx']['source']['prefix']}
