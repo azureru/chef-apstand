@@ -20,13 +20,13 @@ bash "Composer Globally" do
 end
 
 # install specified global components
-globals = node['composer']['globals']
-globals.each do |globalModule|
-    bash "Composer Global #{globalModule}" do
-        user  "root"
-        group "root"
-        code <<-EOF
-            composer global require "#{globalModule}"
-        EOF
-    end
-end
+# globals = node['composer']['globals']
+# globals.each do |globalModule|
+#     bash "Composer Global #{globalModule}" do
+#         user  "root"
+#         group "root"
+#         code <<-EOF
+#             composer global require "#{globalModule}"
+#         EOF
+#     end
+# end
