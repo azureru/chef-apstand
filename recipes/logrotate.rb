@@ -3,7 +3,7 @@
 # Recipe:: logrotate
 #
 # Basically just install logrotate on the local machine
-#
+# and create logrotate files
 #
 # Copyright 2014, PT Appsindo Technology as BSD-style found in the LICENSE file
 #

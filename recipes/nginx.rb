@@ -10,8 +10,10 @@
 # @author Erwin Saputra <erwin.saputra@at.co.id>
 #
 
+
 # WEBAPPS
 webapp = node["webapp"]
+
 
 # CLEANING (so our config is immutable)
 #---------------------------- Basic Includes
@@ -19,23 +21,20 @@ directory "/etc/nginx/appsindo.d" do
   action     :delete
   recursive  true
 end
-
-if webapp.nil? or webapp.empty? then
-    # delete the old config (if any)
-    file "/etc/nginx/sites-enabled/00-default.conf" do
-        action :delete
-    end
-else
-    webapp.each do |app|
-        # delete the old config (if any)
-        file "/etc/nginx/sites-enabled/#{app[:name]}.conf" do
-            action :delete
-        end
-    end
+directory "/etc/nginx/sites-enabled/" do
+  action     :delete
+  recursive  true
+end
+directory "/etc/nginx/sites-enabled/" do
+  owner   "root"
+  group   "root"
+  mode    0755
+  action  :create
 end
 
 
-# adding whoever the user set to the default `www-data` group
+# Adding whoever the user set to the default `www-data` group
+#----------------------------
 localUser  = node['www']['user']
 localGroup = node['www']['group']
 bash "add user #{localUser} to www-data" do
@@ -43,6 +42,8 @@ bash "add user #{localUser} to www-data" do
   code "usermod -a -G #{localGroup} www-data"
 end
 
+# Install Pagespeed
+#----------------------------
 is_pagespeed = node["nginx"]["is_pagespeed"]
 nps_version  = "1.9.32.2"
 
@@ -104,7 +105,9 @@ if node.default["environment"] == "development"
   is_dev = ".dev"
 end
 
-# create /etc/nginx/appsindo.d for default includes
+
+# Create /etc/nginx/appsindo.d for default includes
+#----------------------------
 directory "/etc/nginx/appsindo.d" do
   owner    "root"
   group    "root"
@@ -185,7 +188,7 @@ end
 
 # create `/etc/nginx/sites-enabled/`
 directory "/etc/nginx/sites-enabled/" do
-  owner   "r`oot"
+  owner   "root"
   group   "root"
   mode    0755
   action  :create

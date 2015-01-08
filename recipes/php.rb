@@ -2,7 +2,9 @@
 # Cookbook Name:: appsindo
 # Recipe:: php
 # Descriptions::
+#
 #    Will install PHP and some standard modules
+#    also create php-conf pool
 #
 # Copyright 2014, PT Appsindo Technology as BSD-style found in the LICENSE file
 #
