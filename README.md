@@ -1,3 +1,6 @@
+Moved to https://github.com/appsindo/chef-appsindo/ 
+========
+
 Appsindo Cookbook
 =================
 Appsindo Base Cookbook combining setups from:
